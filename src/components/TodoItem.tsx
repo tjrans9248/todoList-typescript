@@ -1,17 +1,17 @@
 import React from 'react';
 
 interface TodoItemProp {
+  key?: number;
   item: string;
-  handleDelete: (i: number, e: any) => void;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onDelete: (i: any) => void;
 }
-const TodoItem: React.FC<TodoItemProp> = ({ item, handleDelete, onClick }) => {
+const TodoItem = ({ item, onDelete }: TodoItemProp) => {
   return (
     <>
       <div className="w-11/12 pl-5 pt-3 h-14 mt-3 border-2 text-xl border-black flex justify-between">
         {item}
         <button
-          onClick={handleDelete}
+          onClick={() => onDelete(i)}
           className="border-black border-2 mr-3 mb-2 h-auto"
         >
           X
@@ -22,3 +22,6 @@ const TodoItem: React.FC<TodoItemProp> = ({ item, handleDelete, onClick }) => {
 };
 
 export default TodoItem;
+function i(i: any): void {
+  throw new Error('Function not implemented.');
+}

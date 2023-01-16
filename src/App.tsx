@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import TodoBoard from './components/TodoBoard';
 
-export interface IProp {
-  i: number;
-  handleDelete(): void;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-}
+// export interface IProp {
+//   i: number;
+//   handleDelete(): void;
+//   onClick: React.MouseEventHandler<HTMLButtonElement>;
+// }
+
 const App = () => {
   const [todoInput, setTodoInput] = useState<string>('');
   const [todoList, setTodoList] = useState<string[]>([]);
@@ -31,10 +32,14 @@ const App = () => {
     }
   };
 
-  const handleDelete = (i: number, e: React.MouseEvent<HTMLButtonElement>) => {
+  const onDelete = (i: any) => {
     const deleteVal = [...todoList];
-    deleteVal.slice(i, 1);
+    // setTodoList(deleteVal.filter((x, idx) => deleteVal.indexOf(x) !== idx));
+    deleteVal.splice(i, 1);
     setTodoList(deleteVal);
+
+    // setTodoList(deleteVal.splice(i, 1));
+    console.log(setTodoList(deleteVal));
   };
 
   return (
@@ -51,7 +56,7 @@ const App = () => {
             todoList={todoList}
             key={0}
             item={''}
-            handleDelete={handleDelete}
+            onDelete={onDelete}
           />
           <input
             placeholder="입력하세요"
@@ -61,6 +66,7 @@ const App = () => {
             className="w-11/12 h-14 pl-5 outline-none border-2 border-black placeholder:text-black absolute inset-x-0 bottom-0 bg-green-700 text-xl"
             onKeyPress={onEnter}
           />
+
           <button onClick={addItem} className="button" />
         </div>
       </div>
@@ -69,6 +75,3 @@ const App = () => {
 };
 
 export default App;
-function i(i: number, arg1: number) {
-  throw new Error('Function not implemented.');
-}

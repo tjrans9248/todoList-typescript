@@ -6,16 +6,15 @@ interface TodoBoardProps {
   todoList: string[];
   key: number;
   item: string;
-  handleDelete: (i: number, e: any) => void;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onDelete: (i: any) => void;
 }
 
-const TodoBoard: React.FC<TodoBoardProps> = ({ todoList, handleDelete }) => {
+const TodoBoard: React.FC<TodoBoardProps> = ({ todoList, onDelete }) => {
   return (
     <>
       <div className="w-full h-full overflow-auto">
         {todoList.map((item: string, key: number) => (
-          <TodoItem item={item} key={key} handleDelete={handleDelete} />
+          <TodoItem item={item} key={key} onDelete={onDelete} />
         ))}
       </div>
     </>
